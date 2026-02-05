@@ -1,3 +1,35 @@
+# ---------------------------------
+# Yocto / Kas Build Artifacts
+# ---------------------------------
+build/
+downloads/
+sstate-cache/
+tmp/
+.kas_work_dir/
+
+# ---------------------------------
+# IDE & Editor Configs (Optional)
+# ---------------------------------
+.vscode/
+.idea/
+*.swp
+# Shared configuration files
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+
+# ----------------------------------------------------------------------
+# Local Development Directories
+# ----------------------------------------------------------------------
+src/
+layers/
+
+# ----------------------------------------------------------------------
+# External Repositories (Managed by Kas)
+# ----------------------------------------------------------------------
+poky/
+meta-openembedded/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
