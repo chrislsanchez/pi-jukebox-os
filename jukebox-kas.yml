@@ -1,0 +1,44 @@
+header:
+  version: 14
+
+machine: raspberrypi3
+distro: poky
+target: jukebox-image
+
+repos:
+  poky:
+    url: "https://git.yoctoproject.org/poky"
+    refspec: scarthgap
+    layers:
+      meta:
+      meta-poky:
+      meta-yoctobsp:
+
+  meta-raspberrypi:
+    url: "https://git.yoctoproject.org/meta-raspberrypi"
+    refspec: scarthgap
+
+  meta-openembedded:
+    url: "https://git.openembedded.org/meta-openembedded"
+    refspec: scarthgap
+    layers:
+      meta-oe:
+      meta-python:
+      meta-multimedia:
+      meta-networking:
+
+  meta-jukebox:
+    path: layers/meta-jukebox
+
+local_conf_header:
+  standard: |
+    # Enable SPI for the RFID Reader
+    ENABLE_SPI_BUS = "1"
+    # Use systemd as the init manager
+    DISTRO_FEATURES:append = " systemd"
+    DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
+    VIRTUAL-RUNTIME_init_manager = "systemd"
+    VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
+    # Hardware specific optimizations
+    DISABLE_SPLASH = "1"
+    CONFIG_TEXT = "dtparam=spi=on"
